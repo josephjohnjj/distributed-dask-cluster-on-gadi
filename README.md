@@ -1,7 +1,6 @@
 # Distributed Dask on Gadi
-This repository provides comprehensive instructions on configuring a distributed Dask Cluster on the Gadi supercomputer using the PBS job scheduler.
-
-To use interface woth the PBS job scheduler on Gadi we need the following python library.
+This repository offers detailed guidance for setting up a distributed Dask Cluster on the Gadi supercomputer, leveraging the PBS job scheduler.
+To interact with the PBS job scheduler on Gadi, you'll require the following Python library.
 
 ```
 
@@ -9,7 +8,7 @@ from dask_jobqueue import PBSCluster
 
 ```
 
-We will be using a Python virtual environment for this tutorial. The virtual environment is available in __/scratch/vp91/Training-Venv/dask/dask-venv__. All the requirements of that virtual environment are available in the text file __requirements.txt__. 
+In this tutorial, we'll utilize a Python virtual environment. The virtual environment can be found at __/scratch/vp91/Training-Venv/dask/dask-venv__. The prerequisites for building this virtual environment are available in the text file __requirements.txt__.
 
 We can can use the following command to deploy a Dask cluster using Dask.
 
@@ -38,8 +37,6 @@ Where
 8. **job_script_prologue**: Commands to add to script before launching worker
 9. **python**: Python executable used to launch Dask workers. Defaults to the Python that is submitting these jobs
 
-Gadi uses a custom PBS so some of the default values to the fucntion may not work on Gadi. For instance the default PBS expects __#PBS -A <project name>__ to specify the project we are using, but the PBS in Gadi use __#PBS -P <project name>__. All these extra directves is mentioned in __job_extra_directives__. Similarly, there may be some default directives we may need to skip. This is __job_directives_skip__.
+Gadi employs a customized PBS setup, which means that some default values in the function might not be compatible with Gadi's configuration. For example, the default PBS expects __#PBS -A <project name>__ to indicate the project in use, while Gadi's PBS uses __#PBS -P <project name>__. You can find these additional directives in the __job_extra_directives__ section. Likewise, there could be certain default directives that we need to omit, which is covered under __job_directives_skip__.
 
-Most HPC clusters comes with latency reducing networks like Infiiniband. We can instruct dask to use a specific  using __interface__. 
-
-We also need to load modules and activate our virual environemnt for each node in the cluster. These instructions are mentioned using __job_script_prologue__. 
+Many HPC clusters are equipped with low-latency networks such as InfiniBand. To configure Dask to utilize a particular network interface, we can make use of the __interface__ parameter. Additionally, we must load necessary modules and activate our virtual environment on each node within the cluster. These directives and setup steps are detailed in the __job_script_prologue__.
