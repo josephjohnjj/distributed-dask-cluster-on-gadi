@@ -40,3 +40,22 @@ Where
 Gadi employs a customized PBS setup, which means that some default values in the function might not be compatible with Gadi's configuration. For example, the default PBS expects __#PBS -A <project name>__ to indicate the project in use, while Gadi's PBS uses __#PBS -P <project name>__. You can find these additional directives in the __job_extra_directives__ section. Likewise, there could be certain default directives that we need to omit, which is covered under __job_directives_skip__.
 
 Many HPC clusters are equipped with low-latency networks such as InfiniBand. To configure Dask to utilize a particular network interface, we can make use of the __interface__ parameter. Additionally, we must load necessary modules and activate our virtual environment on each node within the cluster. These directives and setup steps are detailed in the __job_script_prologue__.
+
+We can verify the job script generated to request the nodes using
+
+```
+
+cluster.job_script()
+
+```
+
+These parameters define the attributes of an individual job or a single compute node, rather than describing the attributes of your entire computation. At this point, no jobs have been initiated. To execute the complete computation, you will subsequently request a specific number of jobs using the __scale__ command:
+
+```
+
+cluster.scale(jobs=2)
+
+```
+
+Within Dask-Distributed, a Worker represents a Python object and a node within a Dask Cluster, serving a dual role: 1) providing data and 2) executing computations. On the other hand, jobs are resources that are submitted to and managed by the job queuing system like PBS. In the context of Dask-Jobqueue, a single Job can encompass one or more Workers.
+
