@@ -1,5 +1,10 @@
 # Distributed Dask on Gadi
 This repository offers detailed guidance for setting up a distributed Dask Cluster on the Gadi supercomputer, leveraging the PBS job scheduler.
+
+![](figs/architecture.png)
+
+Dask.distributed serves as a centralized, distributed, and adaptable task scheduler. The heart of the Dask system, its central scheduler, orchestrates the activities of numerous Dask worker processes deployed across various machines, all while efficiently handling concurrent requests from multiple clients.
+
 To interact with the PBS job scheduler on Gadi, you'll require the following Python library.
 
 ```
