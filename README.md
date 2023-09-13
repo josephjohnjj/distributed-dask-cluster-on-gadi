@@ -63,22 +63,19 @@ cluster.scale(jobs=2)
 
 ```
 
-You can check the sttaus of the workers using the PBS command
-
-```
-
-qstat
-
-```
-
-Initally, the request for workers may be queued, but not allocated
-
-![](figs/pbs1.png)
-
-But the PBS job scheduler will eventually allocate the workers
+You can check the status of the workers using the PBS command __qstat__. Initally, the request for workers may be queued, but not allocated
 
 ![](figs/pbs2.png)
 
+But the PBS job scheduler will eventually allocate the workers that were requested. 
+
+![](figs/pbs1.png)
+
 
 Within Dask-Distributed, a Worker represents a Python object and a node within a Dask Cluster, serving a dual role: 1) providing data and 2) executing computations. On the other hand, jobs are resources that are submitted to and managed by the job queuing system like PBS. In the context of Dask-Jobqueue, a single Job can encompass one or more Workers.
+
+Dask also offers a dashboard that could be used for monitoring the workers and other activities within the Dask environment.
+
+![](figs/dashboard.png)
+
 
