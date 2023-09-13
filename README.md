@@ -53,6 +53,7 @@ We can verify the job script generated to request the nodes using
 cluster.job_script()
 
 ```
+![](figs/script.png)
 
 These parameters define the attributes of an individual job or a single compute node, rather than describing the attributes of your entire computation. At this point, no jobs have been initiated. To execute the complete computation, you will subsequently request a specific number of jobs using the __scale__ command:
 
@@ -61,6 +62,23 @@ These parameters define the attributes of an individual job or a single compute 
 cluster.scale(jobs=2)
 
 ```
+
+You can check the sttaus of the workers using the PBS command
+
+```
+
+qstat
+
+```
+
+Initally, the request for workers may be queued, but not allocated
+
+![](figs/pbs1.png)
+
+But the PBS job scheduler will eventually allocate the workers
+
+![](figs/pbs2.png)
+
 
 Within Dask-Distributed, a Worker represents a Python object and a node within a Dask Cluster, serving a dual role: 1) providing data and 2) executing computations. On the other hand, jobs are resources that are submitted to and managed by the job queuing system like PBS. In the context of Dask-Jobqueue, a single Job can encompass one or more Workers.
 
